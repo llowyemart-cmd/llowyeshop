@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Llowye Search
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  /* ============ EDIT AREA (warna & nomor WA) ============ */
+  :root{
+    --pink:#FF6FA5;
+    --purple:#6C5CE7;
+    --yellow:#FFC145;
+    --green:#2ECC71;
+    --blue:#4A90E2;
+    --red:#FF5C5C;
+    --ink:#26243B;
+    --muted:#726F8C;
+    --bg:#FAF8FF;
+    --card:#FFFFFF;
+    --line:#ECE9F7;
+  }
+  /* Ganti nomor WA kamu di sini (format https://wa.me/628991740111?text=Halo%20Nek%20Llowye%21%20Aku%20mau%20order%20dong%20%5E%E2%80%BF%5E) */
+  /* dipakai otomatis di semua tombol "Order via WhatsApp" */
+
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{
+    font-family:'Quicksand', sans-serif;
+    background:var(--bg);
+    color:var(--ink);
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,.logo{font-family:'Fredoka', sans-serif;}
+  a{text-decoration:none; color:inherit;}
+  img{max-width:100%; display:block;}
+
+  /* ---------- HEADER ---------- */
+  header{
+    display:flex; justify-content:space-between; align-items:center;
+    padding:16px 20px;
+  }
+  .brand{display:flex; align-items:center; gap:8px;}
+  .brand .cat{font-size:22px;}
+  .brand span{font-weight:800; font-size:18px;}
+  .header-cta{
+    background:var(--green); color:#fff; font-weight:700;
+    padding:9px 16px; border-radius:999px; font-size:13px;
+    white-space:nowrap;
+  }
+
+  /* ---------- HERO / SEARCH ---------- */
+  .hero{
+    padding:28px 20px 20px;
+    text-align:center;
+    position:relative;
+    overflow:hidden;
+  }
+  .sparkle{
+    position:absolute; font-size:18px; opacity:.7;
+    animation:float 3s ease-in-out infinite;
+  }
+  .sparkle.s1{top:10px; left:12%; animation-delay:0s;}
+  .sparkle.s2{top:60px; right:10%; animation-delay:.6s; font-size:14px;}
+  .sparkle.s3{top:4px; right:22%; animation-delay:1.2s; font-size:13px;}
+  @keyframes float{
+    0%,100%{transform:translateY(0) rotate(0deg);}
+    50%{transform:translateY(-8px) rotate(12deg);}
+  }
+  .mascot-wrap{
+    display:flex; align-items:flex-end; gap:8px;
+    justify-content:flex-start; margin:18px 0 0 4px;
+  }
+  .mascot{
+    font-size:34px;
+    filter:drop-shadow(0 3px 4px rgba(0,0,0,.12));
+  }
+  .bubble{
+    background:#fff; border:1px solid var(--line);
+    border-radius:14px 14px 14px 2px;
+    padding:8px 12px; font-size:11px; font-weight:700;
+    color:var(--muted); line-height:1.5; text-align:left;
+    box-shadow:0 4px 14px rgba(38,36,59,0.06);
+  }
+  .trust-strip{
+    display:flex; justify-content:center; flex-wrap:wrap; gap:16px;
+    background:#FFE9F2; padding:10px 16px;
+    font-size:11px; font-weight:800; color:var(--pink);
+  }
+  .wordmark{
+    font-family:'Fredoka', sans-serif;
+    font-size:44px; font-weight:700; letter-spacing:-1px;
+    line-height:1;
+  }
+  .wordmark span:nth-child(1){color:var(--blue);}
+  .wordmark span:nth-child(2){color:var(--red);}
+  .wordmark span:nth-child(3){color:var(--yellow);}
+  .wordmark span:nth-child(4){color:var(--blue);}
+  .wordmark span:nth-child(5){color:var(--green);}
+  .wordmark span:nth-child(6){color:var(--red);}
+  .wordmark .search-word{
+    color:var(--muted); font-weight:600;
+    font-size:15px; letter-spacing:0; vertical-align:middle;
+    margin-left:6px;
+  }
+  .tagline{
+    color:var(--muted); margin-top:6px; font-size:15px; font-weight:600;
+  }
+  .searchbar{
+    margin:20px auto 0; max-width:480px;
+    background:var(--card); border:1px solid var(--line);
+    border-radius:999px; padding:14px 18px;
+    display:flex; align-items:center; gap:10px;
+    box-shadow:0 6px 20px rgba(108,92,231,0.08);
+  }
+  .searchbar input{
+    border:none; outline:none; flex:1; font-size:15px;
+    font-family:inherit; background:transparent; color:var(--ink);
+  }
+  .searchbar .icon{color:var(--muted); font-size:16px;}
+
+  .pills{
+    display:flex; gap:8px; flex-wrap:nowrap;
+    justify-content:flex-start;
+    margin-top:16px; padding:0 20px 4px;
+    overflow-x:auto;
+    -webkit-overflow-scrolling:touch;
+  }
+  .pills::-webkit-scrollbar{display:none;}
+  .pill{
+    flex:0 0 auto;
+    padding:8px 16px; border-radius:999px; font-size:13px; font-weight:700;
+    background:var(--card); border:1px solid var(--line); color:var(--muted);
+    cursor:pointer; white-space:nowrap;
+  }
+  .pill.active{background:var(--ink); color:#fff; border-color:var(--ink);}
+
+  /* ---------- SEARCH RESULTS (muncul saat ngetik) ---------- */
+  #searchResults{
+    max-width:480px; margin:14px auto 0; padding:0 16px;
+    display:none;
+  }
+  #searchResults.show{display:block;}
+  .result-item{
+    display:flex; gap:12px; align-items:center;
+    background:var(--card); border:1px solid var(--line);
+    border-radius:14px; padding:10px 12px; margin-bottom:8px;
+  }
+  .result-item .r-icon{
+    width:38px; height:38px; border-radius:10px;
+    display:flex; align-items:center; justify-content:center;
+    font-size:18px; flex-shrink:0;
+  }
+  .result-item .r-info{flex:1; min-width:0;}
+  .result-item .r-info b{font-size:14px; display:block;}
+  .result-item .r-info small{color:var(--muted); font-size:12px;}
+  .result-item .r-go{
+    font-size:12px; font-weight:700; color:var(--purple); flex-shrink:0;
+  }
+  .no-result{
+    text-align:center; color:var(--muted); font-size:13px; padding:14px 0;
+  }
+
+  /* ---------- CATEGORY ROWS ---------- */
+  .cat-section{padding:22px 0 4px;}
+  .cat-title{
+    display:flex; align-items:center; gap:8px;
+    padding:0 20px; margin-bottom:12px;
+  }
+  .cat-title .emoji{font-size:20px;}
+  .cat-title h2{font-size:18px; font-weight:700;}
+
+  .scroll-row{
+    display:flex; gap:14px; overflow-x:auto;
+    padding:2px 20px 14px;
+    scroll-snap-type:x proximity;
+    -webkit-overflow-scrolling:touch;
+  }
+  .scroll-row::-webkit-scrollbar{display:none;}
+
+  .product-card{
+    scroll-snap-align:start;
+    flex:0 0 220px;
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:18px;
+    padding:14px;
+    box-shadow:0 4px 14px rgba(38,36,59,0.05);
+  }
+  .product-card .top{display:flex; align-items:center; gap:10px; margin-bottom:8px;}
+  .p-icon{
+    width:38px; height:38px; border-radius:10px; flex-shrink:0;
+    display:flex; align-items:center; justify-content:center; font-size:18px; color:#fff;
+  }
+  .product-card h3{font-size:15px;}
+  .badges{display:flex; gap:5px; flex-wrap:wrap; margin:8px 0;}
+  .badge{
+    font-size:10px; font-weight:700; padding:3px 8px; border-radius:999px;
+    background:#F3F1FF; color:var(--purple);
+  }
+  .product-card p.desc{font-size:12.5px; color:var(--muted); margin-bottom:10px; line-height:1.4;}
+  .price-row{
+    display:flex; justify-content:space-between; align-items:center;
+    margin-bottom:10px;
+  }
+  .price-row .price{font-size:17px; font-weight:800; color:var(--pink);}
+  .price-row .from{font-size:10px; color:var(--muted); display:block;}
+  .order-btn{
+    display:block; text-align:center; background:var(--green); color:#fff;
+    font-weight:700; font-size:13px; padding:9px 0; border-radius:999px;
+  }
+
+  /* ---------- FOOTER BAR ---------- */
+  footer{
+    margin-top:20px; background:var(--pink); color:#fff;
+    padding:18px 20px 22px; text-align:center;
+  }
+  footer .foot-brand{font-weight:800; font-size:17px; margin-bottom:2px;}
+  footer .foot-sub{font-size:12px; opacity:.9; margin-bottom:14px;}
+  .pay-strip{
+    display:flex; justify-content:center; flex-wrap:wrap; gap:10px;
+    margin-bottom:14px; font-size:11px; font-weight:700;
+    color:#fff; opacity:.9;
+  }
+  .foot-info{
+    display:flex; flex-wrap:wrap; justify-content:center; gap:14px;
+    font-size:12px; font-weight:700;
+  }
+  .foot-info div{display:flex; align-items:center; gap:5px;}
+
+  @media(min-width:640px){
+    .wordmark{font-size:56px;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div></div>
+  <a class="header-cta" href="https://wa.me/628991740111?text=Halo%20Nek%20Llowye%21%20Aku%20mau%20order%20dong%20%5E%E2%80%BF%5E" target="_blank">💬 Chat WA</a>
+</header>
+
+<section class="hero">
+  <span class="sparkle s1">✨</span>
+  <span class="sparkle s2">✨</span>
+  <span class="sparkle s3">⭐</span>
+  <div class="wordmark">
+    <span>L</span><span>l</span><span>o</span><span>w</span><span>y</span><span>e</span><span class="search-word">Search</span>
+  </div>
+
+  <div class="searchbar">
+    <span class="icon">🔍</span>
+    <input id="searchInput" type="text" placeholder="Cari Netflix, CapCut, Spotify..." oninput="handleSearch()" onfocus="showSuggestions()" onblur="hideSuggestionsIfEmpty()">
+  </div>
+
+  <div class="pills">
+    <div class="pill active" data-cat="all" onclick="filterCat('all', this)">Semua</div>
+    <div class="pill" data-cat="streaming" onclick="filterCat('streaming', this)">🎬 Streaming</div>
+    <div class="pill" data-cat="editing" onclick="filterCat('editing', this)">🎨 Editing</div>
+    <div class="pill" data-cat="music" onclick="filterCat('music', this)">🎵 Music</div>
+    <div class="pill" data-cat="education" onclick="filterCat('education', this)">📚 Education</div>
+    <div class="pill" data-cat="ai" onclick="filterCat('ai', this)">🤖 AI Apps</div>
+  </div>
+
+  <div id="searchResults"></div>
+
+  <div class="mascot-wrap">
+    <div class="mascot">🐱</div>
+    <div class="bubble">Order cepat<br>Garansi aman<br>Trusted seller 💗</div>
+  </div>
+</section>
+
+<div class="trust-strip">
+  <span>⚡ Fast Response</span>
+  <span>🛡️ Full Garansi</span>
+  <span>✅ Akun Legal</span>
+  <span>💯 Trusted Seller</span>
+</div>
+
+<main id="catSections"></main>
+
+<footer>
+  <div class="pay-strip">
+    <span>💙 Seabank</span><span>🔵 DANA</span><span>🟣 OVO</span><span>💚 GoPay</span><span>🧡 ShopeePay</span>
+  </div>
+  <div class="foot-brand">Llowye Shop 🐾</div>
+  <div class="foot-sub">Streaming & Editing Apps Store</div>
+  <div class="foot-info">
+    <div>🕒 Setiap hari 08.00–23.00</div>
+    <div>⚡ Respon &lt; 5 menit</div>
+    <div>✅ Trusted Seller</div>
+  </div>
+</footer>
+
+<script>
+/* ======================================================
+   EDIT PRODUK DI SINI SAJA — nggak perlu sentuh HTML/CSS
+   category: "streaming" | "editing" | "music" | "education" | "ai"
+   color: warna icon card (hex)
+====================================================== */
+const WA_NUMBER = "628991740111"; // nomor WA asli Llowye Shop
+
+const products = [
+  // ---- STREAMING ----
+  {name:"Netflix Premium", cat:"streaming", icon:"🎬", color:"#E50914",
+   badges:["Garansi 1 Bulan","4K Ultra HD","Private"], desc:"Nonton semua film & series tanpa batas.",
+   price:"Rp 25.000"},
+  {name:"Disney+ Hotstar", cat:"streaming", icon:"⭐", color:"#113CCF",
+   badges:["Garansi 1 Bulan","Sharing"], desc:"Marvel, Star Wars, sampai bola lokal & internasional.",
+   price:"Rp 20.000"},
+  {name:"Vidio Premier", cat:"streaming", icon:"📺", color:"#FF3E3E",
+   badges:["Garansi 1 Bulan"], desc:"Liga Inggris & series lokal favorit kamu.",
+   price:"Rp 18.000"},
+  {name:"WeTV VIP", cat:"streaming", icon:"🎞️", color:"#FFA000",
+   badges:["Garansi 1 Bulan"], desc:"Drama Asia & variety show tanpa iklan.",
+   price:"Rp 15.000"},
+
+  // ---- EDITING ----
+  {name:"CapCut Pro", cat:"editing", icon:"✂️", color:"#111111",
+   badges:["Akun Resmi","Garansi 1 Bulan"], desc:"Efek & template premium buat edit video.",
+   price:"Rp 20.000"},
+  {name:"Canva Pro", cat:"editing", icon:"🎨", color:"#00C4CC",
+   badges:["1 Tahun","All Device"], desc:"Desain apapun, akses fitur premium tanpa batas.",
+   price:"Rp 30.000"},
+  {name:"Adobe Premiere", cat:"editing", icon:"🎥", color:"#9999FF",
+   badges:["Garansi 1 Bulan"], desc:"Edit video level profesional di HP/PC.",
+   price:"Rp 35.000"},
+  {name:"PicsArt Gold", cat:"editing", icon:"🖌️", color:"#7B2FF7",
+   badges:["Garansi 1 Bulan"], desc:"Edit foto dengan tools & stiker premium.",
+   price:"Rp 18.000"},
+
+  // ---- MUSIC ----
+  {name:"Spotify Premium", cat:"music", icon:"🎧", color:"#1DB954",
+   badges:["Individual/Family","Legal"], desc:"Jutaan lagu tanpa iklan, bisa offline.",
+   price:"Rp 15.000"},
+  {name:"YouTube Music", cat:"music", icon:"▶️", color:"#FF0000",
+   badges:["1 Bulan"], desc:"Streaming musik + YouTube Premium tanpa iklan.",
+   price:"Rp 20.000"},
+  {name:"Joox VIP", cat:"music", icon:"🎶", color:"#2FCC71",
+   badges:["1 Bulan"], desc:"Lagu Indo & internasional, download sepuasnya.",
+   price:"Rp 12.000"},
+
+  // ---- EDUCATION ----
+  {name:"Ruangguru Plus", cat:"education", icon:"📘", color:"#00A868",
+   badges:["1 Bulan"], desc:"Video belajar & latihan soal semua mapel.",
+   price:"Rp 25.000"},
+  {name:"Quizlet Plus", cat:"education", icon:"🧠", color:"#4257B2",
+   badges:["1 Bulan"], desc:"Flashcard & latihan soal tanpa iklan.",
+   price:"Rp 15.000"},
+  {name:"Chegg Study", cat:"education", icon:"📗", color:"#F58021",
+   badges:["1 Bulan"], desc:"Bantuan tugas & pembahasan soal kuliah.",
+   price:"Rp 20.000"},
+
+  // ---- AI APPS ----
+  {name:"ChatGPT Plan Go", cat:"ai", icon:"🤖", color:"#10A37F",
+   badges:["1 Bulan","Hemat"], desc:"Akses ChatGPT dengan limit lebih tinggi dari versi gratis.",
+   price:"Rp 20.000"},
+  {name:"ChatGPT Plan Plus", cat:"ai", icon:"🤖", color:"#10A37F",
+   badges:["1 Bulan","GPT-4"], desc:"Model terbaru, respon lebih cepat, limit paling besar.",
+   price:"Rp 35.000"},
+  {name:"Gemini AI", cat:"ai", icon:"✨", color:"#4A90E2",
+   badges:["1 Bulan"], desc:"Asisten AI Google, terintegrasi Workspace & lebih pintar.",
+   price:"Rp 25.000"},
+  {name:"Leonardo AI", cat:"ai", icon:"🎨", color:"#6C5CE7",
+   badges:["1 Bulan"], desc:"Generate gambar & artwork AI kualitas tinggi.",
+   price:"Rp 25.000"},
+  {name:"Grok AI", cat:"ai", icon:"🚀", color:"#111111",
+   badges:["1 Bulan"], desc:"AI dari xAI, jawaban to the point & real-time.",
+   price:"Rp 25.000"},
+];
+
+const categoryLabels = {
+  streaming: {emoji:"🎬", title:"Streaming Apps"},
+  editing:   {emoji:"🎨", title:"Editing Apps"},
+  music:     {emoji:"🎵", title:"Music Apps"},
+  education: {emoji:"📚", title:"Education Apps"},
+  ai:        {emoji:"🤖", title:"AI Apps"},
+};
+
+function waLink(productName){
+  const msg = encodeURIComponent(`Halo Llowye Shop, aku mau order ${productName} 🐾`);
+  return `https://wa.me/${WA_NUMBER}?text=${msg}`;
+}
+
+function renderSections(activeCat){
+  const container = document.getElementById('catSections');
+  container.innerHTML = "";
+  const cats = activeCat === 'all' ? Object.keys(categoryLabels) : [activeCat];
+
+  cats.forEach(cat => {
+    const items = products.filter(p => p.cat === cat);
+    if(items.length === 0) return;
+    const info = categoryLabels[cat];
+
+    const section = document.createElement('div');
+    section.className = 'cat-section';
+    section.innerHTML = `
+      <div class="cat-title"><span class="emoji">${info.emoji}</span><h2>${info.title}</h2></div>
+      <div class="scroll-row">
+        ${items.map(p => `
+          <div class="product-card">
+            <div class="top">
+              <div class="p-icon" style="background:${p.color}">${p.icon}</div>
+              <h3>${p.name}</h3>
+            </div>
+            <div class="badges">${p.badges.map(b=>`<span class="badge">${b}</span>`).join('')}</div>
+            <p class="desc">${p.desc}</p>
+            <div class="price-row">
+              <div><span class="from">Mulai dari</span><span class="price">${p.price}</span></div>
+            </div>
+            <a class="order-btn" href="${waLink(p.name)}" target="_blank">Order via WhatsApp</a>
+          </div>
+        `).join('')}
+      </div>
+    `;
+    container.appendChild(section);
+  });
+}
+
+function renderResultItem(p){
+  return `
+    <a class="result-item" href="${waLink(p.name)}" target="_blank">
+      <div class="r-icon" style="background:${p.color}20">${p.icon}</div>
+      <div class="r-info"><b>${p.name}</b><small>${p.price} · ${p.badges[0]}</small></div>
+      <div class="r-go">Order →</div>
+    </a>`;
+}
+
+function showSuggestions(){
+  const q = document.getElementById('searchInput').value.trim();
+  if(q !== "") return; // kalau udah ada ketikan, biarin handleSearch yang urus
+
+  const resultsBox = document.getElementById('searchResults');
+  const sections = document.getElementById('catSections');
+  sections.style.display = "none";
+  resultsBox.classList.add('show');
+
+  const suggested = products.slice(0, 6); // produk yang ditampilin sebagai rekomendasi
+  resultsBox.innerHTML =
+    `<div style="font-size:12px;font-weight:800;color:var(--muted);padding:2px 4px 10px;">🔥 Rekomendasi buat kamu</div>` +
+    suggested.map(renderResultItem).join('');
+}
+
+function hideSuggestionsIfEmpty(){
+  setTimeout(() => {
+    if(document.getElementById('searchInput').value.trim() === ""){
+      document.getElementById('searchResults').classList.remove('show');
+      document.getElementById('catSections').style.display = "block";
+    }
+  }, 150);
+}
+
+function filterCat(cat, el){
+  document.querySelectorAll('.pill').forEach(p => p.classList.remove('active'));
+  el.classList.add('active');
+  document.getElementById('searchInput').value = "";
+  document.getElementById('searchResults').classList.remove('show');
+  document.getElementById('catSections').style.display = "block";
+  renderSections(cat);
+}
+
+function handleSearch(){
+  const q = document.getElementById('searchInput').value.trim().toLowerCase();
+  const resultsBox = document.getElementById('searchResults');
+  const sections = document.getElementById('catSections');
+
+  if(q === ""){
+    showSuggestions();
+    return;
+  }
+
+  sections.style.display = "none";
+  resultsBox.classList.add('show');
+
+  const matches = products.filter(p => p.name.toLowerCase().includes(q));
+  if(matches.length === 0){
+    resultsBox.innerHTML = `<div class="no-result">Produk "${q}" nggak ketemu, coba kata kunci lain ya 🐾</div>`;
+    return;
+  }
+  resultsBox.innerHTML = matches.map(renderResultItem).join('');
+}
+
+renderSections('all');
+
+/* ===== AUTO-SCROLL PELAN KE KANAN, SEREMPAK ===== */
+let autoScrollPaused = {};
+
+function startAutoScroll(){
+  function tick(){
+    document.querySelectorAll('.scroll-row').forEach(row => {
+      if(autoScrollPaused[row.dataset.rowId]) return;
+      row.scrollLeft += 0.6; // kecepatan geser (semua row sama, jadi keliatan serempak)
+      // kalau udah mentok kanan, balik pelan-pelan ke awal
+      if(row.scrollLeft + row.clientWidth >= row.scrollWidth - 1){
+        row.scrollLeft = 0;
+      }
+    });
+    requestAnimationFrame(tick);
+  }
+  requestAnimationFrame(tick);
+}
+
+// kasih id unik ke tiap row + pause otomatis saat user lagi geser manual
+function attachRowInteraction(){
+  document.querySelectorAll('.scroll-row').forEach((row, i) => {
+    if(!row.dataset.rowId) row.dataset.rowId = 'row-' + i;
+    let resumeTimer;
+    const pause = () => {
+      autoScrollPaused[row.dataset.rowId] = true;
+      clearTimeout(resumeTimer);
+    };
+    const resume = () => {
+      clearTimeout(resumeTimer);
+      resumeTimer = setTimeout(() => { autoScrollPaused[row.dataset.rowId] = false; }, 1800);
+    };
+    row.addEventListener('touchstart', pause, {passive:true});
+    row.addEventListener('touchend', resume);
+    row.addEventListener('mousedown', pause);
+    row.addEventListener('mouseup', resume);
+  });
+}
+
+// dipanggil ulang tiap renderSections bikin row baru
+const _originalRenderSections = renderSections;
+renderSections = function(activeCat){
+  _originalRenderSections(activeCat);
+  attachRowInteraction();
+};
+
+attachRowInteraction();
+startAutoScroll();
+</script>
+
+</body>
+</html>
