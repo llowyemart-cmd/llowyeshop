@@ -194,6 +194,9 @@
     width:38px; height:38px; border-radius:10px; flex-shrink:0;
     display:flex; align-items:center; justify-content:center; font-size:18px; color:#fff;
   }
+  .p-icon img{
+  width:100%; height:100%; object-fit:cover; border-radius:10px;
+}
   .product-card h3{font-size:15px;}
   .badges{display:flex; gap:5px; flex-wrap:wrap; margin:8px 0;}
   .badge{
@@ -310,25 +313,25 @@ const badgeColors = {
 };
 const products = [
   // ---- STREAMING ----
-  {name:"Netflix", cat:"streaming", icon:"🎬", color:"#B2EBF7",
+  {name:"Netflix", cat:"streaming", icon:"<img src='netflix.jpg'>", color:"#B2EBF7",
    badges:["Garansi 25hari","Sharing","Private"], desc:"Nonton semua film & series tanpa batas.",
    price:"Rp 25.000"},
-  {name:"Disney+ Hotstar", cat:"streaming", icon:"⭐", color:"#B2EBF7",
+  {name:"Disney+ Hotstar", cat:"streaming", icon:"<img src='disney.jpg'>", color:"#B2EBF7",
    badges:["Garansi 25 hari","Sharing","Private"], desc:"Marvel, Star Wars, sampai bola lokal & internasional.",
    price:"Rp 20.000"},
-    {name:"HBO MAX", cat:"streaming", icon:"🎞️", color:"#B2EBF7",
+    {name:"HBO MAX", cat:"streaming", icon:"<img src='hbo.jpg'>", color:"#B2EBF7",
    badges:["Garansi","Private"], desc:"Drama Asia & variety show tanpa iklan.",
    price:"Rp 15.000"},
-    {name:"Prime Vidio", cat:"streaming", icon:"🎞️", color:"#B2EBF7",
+    {name:"Prime Vidio", cat:"streaming", icon:"<img src='prime.jpg'>", color:"#B2EBF7",
    badges:["Garansi 1 Bulan","Private"], desc:"Drama Asia & variety show tanpa iklan.",
    price:"Rp 15.000"},
-  {name:"Vidio", cat:"streaming", icon:"📺", color:"#B2EBF7",
+  {name:"Vidio", cat:"streaming", icon:"<img src='vidio.jpg'>", color:"#B2EBF7",
    badges:["Garansi 1 Bulan","Private"], desc:"Liga Inggris & series lokal favorit kamu.",
    price:"Rp 18.000"},
-  {name:"WeTV VIP", cat:"streaming", icon:"🎞️", color:"#B2EBF7",
+  {name:"WeTV VIP", cat:"streaming", icon:"<img src='wetv.jpeg'>", color:"#B2EBF7",
    badges:["Garansi 1 Bulan","Private"], desc:"Drama Asia & variety show tanpa iklan.",
    price:"Rp 15.000"},
-    {name:"Iqiyi", cat:"streaming", icon:"🎞️", color:"#B2EBF7",
+    {name:"Iqiyi", cat:"streaming", icon:"<img src='iqiyi.jpeg'>", color:"#B2EBF7",
    badges:["Garansi 1 Bulan","Private"], desc:"Drama Asia & variety show tanpa iklan.",
    price:"Rp 15.000"},
     {name:"Melolo", cat:"streaming", icon:"🎞️", color:"#B2EBF7",
