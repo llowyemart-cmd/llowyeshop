@@ -38,7 +38,7 @@
   /* ---------- HEADER ---------- */
   header{
     display:flex; justify-content:space-between; align-items:center;
-    padding:8px 20px;
+    padding:10px 20px;
   }
   .brand{display:flex; align-items:center; gap:8px;}
   .brand .cat{font-size:22px;}
@@ -103,7 +103,7 @@
     font-size:15px; letter-spacing:0;
     margin-left:6px;
     position:relative;
-    top:10px;
+    top:12px;
   }
   .tagline{
     color:var(--muted); margin-top:6px; font-size:15px; font-weight:600;
@@ -267,13 +267,13 @@
 
   <div class="mascot-wrap">
     <div class="mascot">🐱</div>
-    <div class="bubble">Klik info selengkapnya<br>supaya tau perbedaan plan<br>dan gak nyesel beli 💗</div>
+    <div class="bubble">Klik [info selengkapnya]<br>supaya tau perbedaan plan<br>dan gak nyesel beli ya 💗</div>
   </div>
 </section>
 
 <div class="trust-strip">
   <span>⚡ Fast Response</span>
-  <span>🛡️ Full Garansi</span>
+  <span>🛡️ Garansi Aktif</span>
   <span>✅ Black Market</span>
   <span>💯 Trusted Seller</span>
 </div>
@@ -287,7 +287,7 @@
   <div class="foot-brand">Llowye Shop 🐾</div>
   <div class="foot-sub">Streaming & Editing Apps Store</div>
   <div class="foot-info">
-    <div>🕒 Setiap hari 08.00–23.00</div>
+    <div>🕒 Setiap hari 05.00–21.00</div>
     <div>⚡ Respon &lt; 5 menit</div>
     <div>✅ Trusted Seller</div>
   </div>
@@ -304,66 +304,63 @@ const WA_NUMBER = "628991740111"; // nomor WA asli Llowye Shop
 const products = [
   // ---- STREAMING ----
   {name:"Netflix", cat:"streaming", icon:"🎬", color:"#E50914",
-   badges:["Garansi 1 Bulan","4K Ultra HD","Private"], desc:"Nonton semua film & series tanpa batas.",
+   badges:["Garansi 25hari","Sharing","Private"], desc:"Nonton semua film & series tanpa batas.",
    price:"Rp 25.000"},
   {name:"Disney+ Hotstar", cat:"streaming", icon:"⭐", color:"#113CCF",
-   badges:["Garansi 1 Bulan","Sharing"], desc:"Marvel, Star Wars, sampai bola lokal & internasional.",
+   badges:["Garansi 25 hari","Sharing","Private"], desc:"Marvel, Star Wars, sampai bola lokal & internasional.",
    price:"Rp 20.000"},
     {name:"HBO MAX", cat:"streaming", icon:"🎞️", color:"#FFA000",
-   badges:["Garansi 1 Bulan"], desc:"Drama Asia & variety show tanpa iklan.",
+   badges:["Garansi","Private"], desc:"Drama Asia & variety show tanpa iklan.",
    price:"Rp 15.000"},
     {name:"Prime Vidio", cat:"streaming", icon:"🎞️", color:"#FFA000",
-   badges:["Garansi 1 Bulan"], desc:"Drama Asia & variety show tanpa iklan.",
+   badges:["Garansi 1 Bulan","Private"], desc:"Drama Asia & variety show tanpa iklan.",
    price:"Rp 15.000"},
   {name:"Vidio", cat:"streaming", icon:"📺", color:"#FF3E3E",
-   badges:["Garansi 1 Bulan"], desc:"Liga Inggris & series lokal favorit kamu.",
+   badges:["Garansi 1 Bulan","Private"], desc:"Liga Inggris & series lokal favorit kamu.",
    price:"Rp 18.000"},
   {name:"WeTV VIP", cat:"streaming", icon:"🎞️", color:"#FFA000",
-   badges:["Garansi 1 Bulan"], desc:"Drama Asia & variety show tanpa iklan.",
+   badges:["Garansi 1 Bulan","Private"], desc:"Drama Asia & variety show tanpa iklan.",
    price:"Rp 15.000"},
     {name:"Iqiyi", cat:"streaming", icon:"🎞️", color:"#FFA000",
-   badges:["Garansi 1 Bulan"], desc:"Drama Asia & variety show tanpa iklan.",
+   badges:["Garansi 1 Bulan","Private"], desc:"Drama Asia & variety show tanpa iklan.",
    price:"Rp 15.000"},
     {name:"Melolo", cat:"streaming", icon:"🎞️", color:"#FFA000",
-   badges:["Garansi 1 Bulan"], desc:"Drama Asia & variety show tanpa iklan.",
+   badges:["Garansi 1 Bulan,"Private""], desc:"Drama Asia & variety show tanpa iklan.",
    price:"Rp 15.000"},
     {name:"Loklok", cat:"streaming", icon:"🎞️", color:"#FFA000",
-   badges:["Garansi 1 Bulan"], desc:"Drama Asia & variety show tanpa iklan.",
+   badges:["Garansi 1 Bulan","Private"], desc:"Drama Asia & variety show tanpa iklan.",
    price:"Rp 15.000"},
     {name:"Dramabox", cat:"streaming", icon:"🎞️", color:"#FFA000",
-   badges:["Garansi 1 Bulan"], desc:"Drama Asia & variety show tanpa iklan.",
+   badges:["Garansi 1 Bulan","Private"], desc:"Drama Asia & variety show tanpa iklan.",
    price:"Rp 15.000"},
     {name:"Bstation", cat:"streaming", icon:"🎞️", color:"#FFA000",
-   badges:["Garansi 1 Bulan"], desc:"Drama Asia & variety show tanpa iklan.",
+   badges:["Garansi 1 Bulan","Private"], desc:"Drama Asia & variety show tanpa iklan.",
    price:"Rp 15.000"},
     {name:"Wibuku", cat:"streaming", icon:"🎞️", color:"#FFA000",
-   badges:["Garansi 1 Bulan"], desc:"Drama Asia & variety show tanpa iklan.",
+   badges:["Garansi 1 Bulan","Private"], desc:"Drama Asia & variety show tanpa iklan.",
    price:"Rp 15.000"},
     {name:"Crunchyroll", cat:"streaming", icon:"🎞️", color:"#FFA000",
-   badges:["Garansi 1 Bulan"], desc:"Drama Asia & variety show tanpa iklan.",
+   badges:["Garansi 1 Bulan","Private"], desc:"Drama Asia & variety show tanpa iklan.",
    price:"Rp 15.000"},
     {name:"Viki Rakuten", cat:"streaming", icon:"🎞️", color:"#FFA000",
-   badges:["Garansi 1 Bulan"], desc:"Drama Asia & variety show tanpa iklan.",
+   badges:["Garansi 1 Bulan","Private"], desc:"Drama Asia & variety show tanpa iklan.",
    price:"Rp 15.000"},
     {name:"Mango TV", cat:"streaming", icon:"🎞️", color:"#FFA000",
-   badges:["Garansi 1 Bulan"], desc:"Drama Asia & variety show tanpa iklan.",
+   badges:["Garansi 1 Bulan","Private"], desc:"Drama Asia & variety show tanpa iklan.",
    price:"Rp 15.000"},  
     {name:"Apple TV", cat:"streaming", icon:"🎞️", color:"#FFA000",
-   badges:["Garansi 1 Bulan"], desc:"Drama Asia & variety show tanpa iklan.",
+   badges:["Garansi 1 Bulan","Private"], desc:"Drama Asia & variety show tanpa iklan.",
    price:"Rp 15.000"},
 
   // ---- EDITING ----
-  {name:"CapCut Pro", cat:"editing", icon:"✂️", color:"#111111",
-   badges:["Akun Resmi","Garansi 1 Bulan"], desc:"Efek & template premium buat edit video.",
+  {name:"CapCut", cat:"editing", icon:"✂️", color:"#111111",
+   badges:["Plan Pro","Garansi 25hari"], desc:"Efek & template premium buat edit video.",
    price:"Rp 20.000"},
-  {name:"Canva Pro", cat:"editing", icon:"🎨", color:"#00C4CC",
-   badges:["1 Tahun","All Device"], desc:"Desain apapun, akses fitur premium tanpa batas.",
-   price:"Rp 30.000"},
     {name:"Alight Motion", cat:"editing", icon:"🖌️", color:"#7B2FF7",
-   badges:["Garansi 1 Bulan"], desc:"Edit foto dengan tools & stiker premium.",
+   badges:["Garansi 1 Bulan","Premium"], desc:"Edit foto dengan tools & stiker premium.",
    price:"Rp 18.000"},
   {name:"Meitu", cat:"editing", icon:"🎥", color:"#9999FF",
-   badges:["Garansi 1 Bulan"], desc:"Edit video level profesional di HP/PC.",
+   badges:["Garansi 5hari"], desc:"Edit video level profesional di HP/PC.",
    price:"Rp 35.000"},
   {name:"PicsArt", cat:"editing", icon:"🖌️", color:"#7B2FF7",
    badges:["Garansi 1 Bulan"], desc:"Edit foto dengan tools & stiker premium.",
@@ -389,22 +386,25 @@ const products = [
 
   // ---- MUSIC ----
   {name:"Spotify", cat:"music", icon:"🎧", color:"#1DB954",
-   badges:["Individual/Family","Legal"], desc:"Jutaan lagu tanpa iklan, bisa offline.",
+   badges:["Paket Indplan","Paket Family"], desc:"Jutaan lagu tanpa iklan, bisa offline.",
    price:"Rp 20.000"},
   {name:"YouTube", cat:"music", icon:"▶️", color:"#FF0000",
-   badges:["1 Bulan"], desc:"Streaming musik + YouTube Premium tanpa iklan.",
+   badges:["1 Bulan","Paket indplan","Paket family"], desc:"Streaming musik + YouTube Premium tanpa iklan.",
    price:"Rp 10.000"},
   {name:"Apple Music", cat:"music", icon:"🎶", color:"#2FCC71",
-   badges:["1 Bulan"], desc:"Lagu Indo & internasional, download sepuasnya.",
+   badges:["1 Bulan","Paket indplan","Paket family"], desc:"Lagu Indo & internasional, download sepuasnya.",
    price:"Rp 10.000"},
 
   // ---- EDUCATION ----
   {name:"Duolingo", cat:"education", icon:"📘", color:"#00A868",
-   badges:["1 Bulan"], desc:"Video belajar & latihan soal semua mapel.",
+   badges:["1 Bulan","Paket indplan","Paket family"], desc:"Video belajar & latihan soal semua mapel.",
    price:"Rp 5.000"},
   {name:"Scribd", cat:"education", icon:"🧠", color:"#4257B2",
    badges:["1 Bulan"], desc:"Flashcard & latihan soal tanpa iklan.",
    price:"Rp 15.000"},
+   {name:"Zoom", cat:"education", icon:"📗", color:"#F58021",
+   badges:["1 Bulan"], desc:"Bantuan tugas & pembahasan soal kuliah.",
+   price:"Rp 20.000"},
   {name:"Microsoft Copilot", cat:"education", icon:"📗", color:"#F58021",
    badges:["1 Bulan"], desc:"Bantuan tugas & pembahasan soal kuliah.",
    price:"Rp 20.000"},
@@ -421,8 +421,8 @@ const products = [
    price:"Rp 25.000"},
   
   // ---- AI APPS ----
-  {name:"ChatGPT Plan Go", cat:"ai", icon:"🤖", color:"#10A37F",
-   badges:["1 Bulan","Hemat"], desc:"Akses ChatGPT dengan limit lebih tinggi dari versi gratis.",
+  {name:"ChatGPT", cat:"ai", icon:"🤖", color:"#10A37F",
+   badges:["1 Bulan","Plan Go","Plan Plus","Sharing","Private"], desc:"Akses ChatGPT dengan limit lebih tinggi dari versi gratis.",
    price:"Rp 20.000"},
   {name:"Gemini AI", cat:"ai", icon:"✨", color:"#4A90E2",
    badges:["1 Bulan"], desc:"Asisten AI Google, terintegrasi Workspace & lebih pintar.",
@@ -444,7 +444,7 @@ const categoryLabels = {
 };
 
 function waLink(productName){
-  const msg = encodeURIComponent(`Halo Llowye Shop, aku mau order ${productName} 🐾`);
+  const msg = encodeURIComponent(`Halo Llowye Shop, aku mau order ${productName}`);
   return `https://wa.me/${WA_NUMBER}?text=${msg}`;
 }
 
