@@ -103,7 +103,7 @@
     font-size:15px; letter-spacing:0;
     margin-left:6px;
     position:relative;
-    top:8px;
+    top:5px;
   }
   .tagline{
     color:var(--muted); margin-top:6px; font-size:15px; font-weight:600;
@@ -300,7 +300,14 @@
    color: warna icon card (hex)
 ====================================================== */
 const WA_NUMBER = "628991740111"; // nomor WA asli Llowye Shop
-
+const badgeColors = {
+  streaming: {bg:"#FC8888", text:"#801B1B"},
+  editing:   {bg:"#B2EBF7", text:"#193D7D"},
+  music:     {bg:"#F3F1FF", text:"#6C5CE7"},
+  reading:   {bg:"#F2BA66", text:"#C97F10"},
+  education: {bg:"#91EDB1", text:"#387A4F"},
+  ai:        {bg:"#B5B3B5", text:"#595859"},
+};
 const products = [
   // ---- STREAMING ----
   {name:"Netflix", cat:"streaming", icon:"🎬", color:"#B2EBF7",
@@ -469,7 +476,7 @@ function renderSections(activeCat){
               <div class="p-icon" style="background:${p.color}">${p.icon}</div>
               <h3>${p.name}</h3>
             </div>
-            <div class="badges">${p.badges.map(b=>`<span class="badge">${b}</span>`).join('')}</div>
+            <div class="badges">${p.badges.map(b=>`<span class="badge" style="background:${badgeColors[p.cat]?.bg || '#B2EBF7'}; color:${badgeColors[p.cat]?.text || '#0891A8'}">${b}</span>`).join('')}</div>
             <p class="desc">${p.desc}</p>
             <div class="price-row">
               <div><span class="from">Mulai dari</span><span class="price">${p.price}</span></div>
