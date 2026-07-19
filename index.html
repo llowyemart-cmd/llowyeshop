@@ -278,8 +278,8 @@
   <div class="mascot-wrap">
     <div class="mascot"><img src="Llowye.png" style="width:150px; height:auto; display:block; margin-top:-40px; margin-bottom:-20px; position:relative; z-index:2;"></div>
     <div class="bubble">Klik <span style="background:#FFF0A1; color:#0B0B0B; padding:2px 8px; border-radius:999px; font-weight:800;">info selengkapnya</span><br>supaya tau perbedaan plan<br>dan gak nyesel beli ya...💗</div>
-    <a href="https://wa.me/628991740111?text=Halo%20Nek%20Llowye%21%20Aku%20mau%20order%20dong%20%5E%E2%80%BF%5E" target="_blank" style="display:inline-flex; align-items:center; gap:5px; background:#D6F5DD; color:#1B7A3D; padding:6px 12px; border-radius:999px; font-weight:800; font-size:11px; text-decoration:none; white-space:nowrap; flex-shrink:0;">
-  <img src="wa.jpg" style="width:14px; height:14px; flex-shrink:0; animation: ringPhone 0.8s ease-in-out infinite;"> Order via WhatsApp
+   <a href="https://wa.me/628991740111?text=Halo%20Nek%20Llowye%21%20Aku%20mau%20order%20dong%20%5E%E2%80%BF%5E" target="_blank" style="display:inline-flex; flex-direction:column; align-items:center; gap:2px; background:#D6F5DD; color:#1B7A3D; padding:8px 14px; border-radius:16px; font-weight:800; font-size:11px; text-decoration:none; white-space:nowrap; flex-shrink:0;">
+  <img src="logowa.png" style="width:22px; height:22px; flex-shrink:0; animation: ringPhone 0.8s ease-in-out infinite;"> Order via WhatsApp
 </a>
 </div>
   </div>
@@ -616,6 +616,30 @@ renderSections = function(activeCat){
 
 attachRowInteraction();
 startAutoScroll();
+</script>
+
+  <iframe id="bgMusic" width="0" height="0" src="https://www.youtube.com/embed/kuKyZWS9mag?enablejsapi=1&start=28" style="display:none;" allow="autoplay"></iframe>
+
+<button onclick="toggleMusic()" style="position:fixed; bottom:20px; right:20px; background:#FFF0A1; border:none; border-radius:999px; padding:12px 16px; font-size:20px; box-shadow:0 4px 10px rgba(0,0,0,0.15); z-index:999;">🎵</button>
+
+<script src="https://www.youtube.com/iframe_api"></script>
+<script>
+let player;
+let isPlaying = false;
+function onYouTubeIframeAPIReady(){
+  player = new YT.Player('bgMusic', {
+    events: { 'onReady': () => {} }
+  });
+}
+function toggleMusic(){
+  if(!isPlaying){
+    player.playVideo();
+    isPlaying = true;
+  } else {
+    player.pauseVideo();
+    isPlaying = false;
+  }
+}
 </script>
 
 </body>
