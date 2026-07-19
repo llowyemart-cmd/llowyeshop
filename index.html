@@ -608,16 +608,26 @@ startAutoScroll();
 </script>
 
 </body>
-  <script>
+<script>
 const bubbleHTML = 'Klik <span style="background:#FFF0A1; color:#0B0B0B; padding:2px 8px; border-radius:999px; font-weight:800;">info selengkapnya</span><br>supaya tau perbedaan plan<br>dan gak nyesel beli ya...💗';
 let charIndex = 0;
+
 function typeBubble(){
   if(charIndex <= bubbleHTML.length){
     document.getElementById('typedText').innerHTML = bubbleHTML.slice(0, charIndex);
     charIndex++;
-    setTimeout(typeBubble, 25);
+    setTimeout(typeBubble, 12);
+  } else {
+    setTimeout(resetBubble, 2000); // jeda 2 detik sebelum ngulang
   }
 }
+
+function resetBubble(){
+  charIndex = 0;
+  document.getElementById('typedText').innerHTML = "";
+  typeBubble();
+}
+
 window.addEventListener('load', typeBubble);
 </script>
 </html>
