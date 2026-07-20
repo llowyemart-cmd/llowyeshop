@@ -631,7 +631,7 @@ function startAutoScroll(){
   function tick(){
     document.querySelectorAll('.scroll-row').forEach(row => {
       if(autoScrollPaused[row.dataset.rowId]) return;
-      row.scrollLeft += 0.6; // kecepatan geser (semua row sama, jadi keliatan serempak)
+      row.scrollLeft += 1.5; // kecepatan geser (semua row sama, jadi keliatan serempak)
       // kalau udah mentok kanan, balik pelan-pelan ke awal
       if(row.scrollLeft + row.clientWidth >= row.scrollWidth - 1){
         row.scrollLeft = 0;
