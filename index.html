@@ -198,7 +198,6 @@
   .scroll-row{
     display:flex; gap:14px; overflow-x:auto;
     padding:2px 20px 14px;
-    scroll-snap-type:x proximity;
     -webkit-overflow-scrolling:touch;
   }
   .scroll-row::-webkit-scrollbar{display:none;}
@@ -631,7 +630,7 @@ function startAutoScroll(){
   function tick(){
     document.querySelectorAll('.scroll-row').forEach(row => {
       if(autoScrollPaused[row.dataset.rowId]) return;
-      row.scrollLeft += 1.5; // kecepatan geser (semua row sama, jadi keliatan serempak)
+      row.scrollLeft += 2.5; // kecepatan geser (semua row sama, jadi keliatan serempak)
       // kalau udah mentok kanan, balik pelan-pelan ke awal
       if(row.scrollLeft + row.clientWidth >= row.scrollWidth - 1){
         row.scrollLeft = 0;
