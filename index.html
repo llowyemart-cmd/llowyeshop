@@ -239,7 +239,7 @@
 
   /* ---------- FOOTER BAR ---------- */
   footer{
-    margin-top:20px; background:var(--pink); color:#fff;
+    margin-top:20px; background:#FF0000; color:#FFFFFF;
     padding:18px 20px 22px; text-align:center;
   }
   footer .foot-brand{font-weight:800; font-size:17px; margin-bottom:2px;}
@@ -310,9 +310,12 @@
 <main id="catSections"></main>
 
 <footer>
-  <div class="pay-strip">
-    <span>🧡 Seabank</span><span>💙 DANA</span><span>💙 GoPay</span><span>🧡 ShopeePay</span>
-  </div>
+  <div class="pay-strip" style="align-items:center;">
+  <span style="display:flex; align-items:center; gap:4px;"><img src="sea.jpeg" style="width:16px; height:16px;"> Seabank</span>
+  <span style="display:flex; align-items:center; gap:4px;"><img src="dana.jpeg" style="width:16px; height:16px;"> DANA</span>
+  <span style="display:flex; align-items:center; gap:4px;"><img src="gopay.jpeg" style="width:16px; height:16px;"> GoPay</span>
+  <span style="display:flex; align-items:center; gap:4px;"><img src="shop.jpeg" style="width:16px; height:16px;"> ShopeePay</span>
+</div>
   <div class="foot-brand">Llowye Shop 🐾</div>
   <div class="foot-sub">Streaming & Editing Apps Store</div>
   <div class="foot-info">
@@ -538,7 +541,7 @@ function renderSections(activeCat){
     section.innerHTML = `
       <div class="cat-title"><span class="emoji">${info.emoji}</span><h2>${info.title}</h2></div>
       <div class="scroll-row">
-        ${items.map(p => `
+        ${[...items, ...items].map(p => `
           <div class="product-card">
             <div class="top">
               <div class="p-icon" style="background:${p.color}">${p.icon}</div>
