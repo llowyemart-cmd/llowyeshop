@@ -107,7 +107,7 @@
 }
   .trust-strip{
     display:flex; justify-content:center; flex-wrap:wrap; gap:16px;
-    background:#FFE9F2; padding:10px 16px;
+    background:#E3F7FC; padding:10px 16px;
     font-size:11px; font-weight:800; color:var(--pink);
   }
   .wordmark{
@@ -311,13 +311,14 @@
 
 <footer>
   <div class="pay-strip" style="align-items:center;">
-  <span style="display:flex; align-items:center; gap:4px;"><img src="sea.jpeg" style="width:16px; height:16px;"> Seabank</span>
-  <span style="display:flex; align-items:center; gap:4px;"><img src="dana.jpeg" style="width:16px; height:16px;"> DANA</span>
-  <span style="display:flex; align-items:center; gap:4px;"><img src="gopay.jpeg" style="width:16px; height:16px;"> GoPay</span>
-  <span style="display:flex; align-items:center; gap:4px;"><img src="shop.jpeg" style="width:16px; height:16px;"> ShopeePay</span>
+  <span>🤑 QRIS</span>
+  <span style="display:flex; align-items:center; gap:4px;"><img src="sea.jpeg" style="width:16px; height:16px; border-radius:6px;"> Seabank</span>
+  <span style="display:flex; align-items:center; gap:4px;"><img src="dana.jpeg" style="width:16px; height:16px; border-radius:6px;"> DANA</span>
+  <span style="display:flex; align-items:center; gap:4px;"><img src="gopay.jpeg" style="width:16px; height:16px; border-radius:6px;"> GoPay</span>
+  <span style="display:flex; align-items:center; gap:4px;"><img src="shop.jpeg" style="width:16px; height:16px; border-radius:6px;"> ShopeePay</span>
 </div>
-  <div class="foot-brand">Llowye Shop 🐾</div>
-  <div class="foot-sub">Streaming & Editing Apps Store</div>
+  <div class="foot-brand">Llowye Shop</div>
+  <div class="foot-sub">Streaming, Editing, Music, Education, Reading, Ai Apps Store</div>
   <div class="foot-info">
     <div>🕒 Setiap hari 05.00–21.00</div>
     <div>⚡ Respon &lt; 5 menit</div>
@@ -633,7 +634,7 @@ function startAutoScroll(){
   function tick(){
     document.querySelectorAll('.scroll-row').forEach(row => {
       if(autoScrollPaused[row.dataset.rowId]) return;
-      row.scrollLeft += 1.5; // kecepatan geser (semua row sama, jadi keliatan serempak)
+      row.scrollLeft += 1; // kecepatan geser (semua row sama, jadi keliatan serempak)
       // kalau udah mentok kanan, balik pelan-pelan ke awal
       if(row.scrollLeft + row.clientWidth >= row.scrollWidth - 1){
         row.scrollLeft = 0;
