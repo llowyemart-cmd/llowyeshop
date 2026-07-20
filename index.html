@@ -193,7 +193,11 @@
     padding:0 20px; margin-bottom:12px;
   }
   .cat-title .emoji{font-size:20px;}
-  .cat-title h2{font-size:18px; font-weight:700;}
+  .cat-title h2{
+  font-size:18px;
+  font-weight:600;
+  font-family:'Quicksand', sans-serif;
+}
 
   .scroll-row{
     display:flex; gap:14px; overflow-x:auto;
@@ -515,11 +519,11 @@ const products = [
 ];
 
 const categoryLabels = {
-  streaming: {emoji:"🎬", title:"Streaming Apps"},
-  editing:   {emoji:"🎨", title:"Editing Apps"},
-  music:     {emoji:"🎵", title:"Music Apps"},
-  education: {emoji:"📚", title:"Education Apps"},
-  ai:        {emoji:"🤖", title:"AI Apps"},
+  streaming: {emoji:"🎬", title:"Streaming Apps..."},
+  editing:   {emoji:"🎨", title:"Editing Apps..."},
+  music:     {emoji:"🎵", title:"Music Apps..."},
+  education: {emoji:"📚", title:"Education Apps..."},
+  ai:        {emoji:"🤖", title:"AI Apps..."},
 };
 
 function waLink(productName){
