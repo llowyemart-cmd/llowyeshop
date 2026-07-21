@@ -75,6 +75,13 @@
   0%, 100% { transform: scale(1); }
   50% { transform: scale(1.15); }
 }
+  #musicBtn{
+  transition: transform .08s ease, box-shadow .08s ease;
+}
+#musicBtn:active{
+  transform: scale(0.92) translateY(2px);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.25);
+}
   @keyframes ringPhone{
   0%, 100% { transform: rotate(0deg); }
   20% { transform: rotate(-15deg); }
@@ -143,7 +150,7 @@
     box-shadow:0 6px 20px rgba(108,92,231,0.08);
   }
   .searchbar input{
-    border:none; outline:none; flex:1; font-size:15px;
+    border:none; outline:none; flex:1; font-size:12px;
     font-family:inherit; background:transparent; color:var(--ink);
   }
   .searchbar .icon{color:var(--muted); font-size:16px;}
@@ -195,6 +202,7 @@
   .cat-title{
   display:flex; align-items:center; gap:6px;
   padding:0 20px;
+  margin-bottom:10px;
 }
 .cat-title h2{font-size:18px; font-weight:700; line-height:1;}
 .cat-title .emoji{font-size:20px; line-height:1; display:inline-flex; align-items:center;}
@@ -716,7 +724,7 @@ startAutoScroll();
 
   <iframe id="bgMusic" width="0" height="0" src="https://www.youtube.com/embed/kuKyZWS9mag?enablejsapi=1&start=28" style="display:none;" allow="autoplay"></iframe>
 
-<button onclick="toggleMusic()" style="position:fixed; top:14px; right:14px; background:#FFF0A1; border: 3px solid #B2EBF7; border-radius:999px; padding:6px 10px; font-size:9px; font-weight:400; font-family:'Quicksand', sans-serif; color:#0B0B0B; box-shadow:0 4px 10px rgba(0,0,0,0.15); z-index:999; animation: pulseMusic 1.5s ease-in-out infinite; display:flex; flex-direction:column; align-items:center; gap:1px;">
+<button  id="musicBtn" onclick="toggleMusic()" style="position:fixed; top:14px; right:14px; background:#FFF0A1; border: 3px solid #B2EBF7; border-radius:999px; padding:6px 10px; font-size:9px; font-weight:400; font-family:'Quicksand', sans-serif; color:#0B0B0B; box-shadow:0 4px 10px rgba(0,0,0,0.15); z-index:999; animation: pulseMusic 1.5s ease-in-out infinite; display:flex; flex-direction:column; align-items:center; gap:1px;">
   <span style="font-size:14px; display:inline-block; animation: ringPhone 0.8s ease-in-out infinite;">🎵</span>
   Klik lagu
 </button>
@@ -730,7 +738,24 @@ function onYouTubeIframeAPIReady(){
     events: { 'onReady': () => {} }
   });
 }
+function playClickSound(){
+  try{
+    const ctx = new (window.AudioContext || window.webkitAudioContext)();
+    const osc = ctx.createOscillator();
+    const gain = ctx.createGain();
+    osc.type = 'square';
+    osc.frequency.value = 800;
+    gain.gain.setValueAtTime(0.15, ctx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.08);
+    osc.connect(gain);
+    gain.connect(ctx.destination);
+    osc.start();
+    osc.stop(ctx.currentTime + 0.08);
+  }catch(e){}
+}
+
 function toggleMusic(){
+  playClickSound();
   if(!isPlaying){
     player.playVideo();
     isPlaying = true;
