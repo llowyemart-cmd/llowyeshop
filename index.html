@@ -60,9 +60,13 @@
     position:absolute; font-size:18px; opacity:.7;
     animation:float 3s ease-in-out infinite;
   }
-  .sparkle.s1{top:10px; left:12%; animation-delay:0s;}
-  .sparkle.s2{top:60px; right:10%; animation-delay:.6s; font-size:14px;}
-  .sparkle.s3{top:4px; right:22%; animation-delay:1.2s; font-size:13px;}
+.sparkle.s1{top:10px; left:12%; animation-delay:0s;}
+.sparkle.s2{top:120px; right:6%; animation-delay:.6s; font-size:14px;}
+.sparkle.s3{top:4px; left:30%; animation-delay:1.2s; font-size:13px;}
+.sparkle.s4{top:70px; left:6%; animation-delay:.3s; font-size:15px;}
+.sparkle.s5{top:140px; right:28%; animation-delay:.9s; font-size:12px;}
+.sparkle.s6{top:8px; right:38%; animation-delay:1.5s; font-size:16px;}
+  
   @keyframes float{
     0%,100%{transform:translateY(0) rotate(0deg);}
     50%{transform:translateY(-8px) rotate(12deg);}
@@ -188,8 +192,12 @@
 
   /* ---------- CATEGORY ROWS ---------- */
   .cat-section{padding:22px 0 4px;}
-  .cat-title h2{font-size:18px; font-weight:700;}
-  .cat-title .emoji{font-size:20px;}
+  .cat-title{
+  display:flex; align-items:center; gap:6px;
+  padding:0 20px;
+}
+.cat-title h2{font-size:18px; font-weight:700; line-height:1;}
+.cat-title .emoji{font-size:20px; line-height:1; display:inline-flex; align-items:center;}
 
   .scroll-row{
     display:flex; gap:14px; overflow-x:auto;
@@ -263,19 +271,22 @@
 </header>
 
 <section class="hero">
-  <span class="sparkle s1">✨</span>
+  <span class="sparkle s1">⭐</span>
   <span class="sparkle s2">✨</span>
   <span class="sparkle s3">⭐</span>
+  <span class="sparkle s4">✨</span>
+  <span class="sparkle s5">⭐</span>
+  <span class="sparkle s6">✨</span>
   <div class="wordmark">
     <span>L</span><span>l</span><span>o</span><span>w</span><span>y</span><span>e</span><span class="search-word">Search</span>
   </div>
 
   <div class="searchbar">
     <span class="icon">🔍</span>
-    <input id="searchInput" type="text" placeholder="Cari Netflix, CapCut, Disney+..." oninput="handleSearch()" onfocus="showSuggestions()" onblur="hideSuggestionsIfEmpty()">
+    <input id="searchInput" type="text" placeholder="Cari Netflix, Canva, Disney+, Capcut..." oninput="handleSearch()" onfocus="showSuggestions()" onblur="hideSuggestionsIfEmpty()">
   </div>
 
-  <div class="pills">
+  <div class="pills" id="pillsRow">
     <div class="pill active" data-cat="all" onclick="filterCat('all', this)">Semua</div>
     <div class="pill" data-cat="streaming" onclick="filterCat('streaming', this)">🎬 Streaming</div>
     <div class="pill" data-cat="editing" onclick="filterCat('editing', this)">🎨 Editing</div>
@@ -351,7 +362,7 @@ const products = [
     {name:"PRIME VIDIO", cat:"streaming", icon:"<img src='prime.jpg'>", color:"#B2EBF7",
    badges:["Garansi 1 Bulan","Private","Sharing"], desc:"Drama Asia & variety show tanpa iklan.",
    price:"Rp 15.000"},
-  {name:"VIU", cat:"streaming", icon:"<img src='viu.jpg'>", color:"#B2EBF7",
+  {name:"VIU", cat:"streaming", icon:"<img src='viu.jpeg'>", color:"#B2EBF7",
    badges:["Garansi 1 Bulan","Private","Lifetime"], desc:"Liga Inggris & series lokal favorit kamu.",
    price:"Rp 18.000"},
   {name:"VIDIO", cat:"streaming", icon:"<img src='vidio.jpg'>", color:"#B2EBF7",
@@ -581,7 +592,7 @@ function showSuggestions(){
 
   const suggested = products.slice(0, 6); // produk yang ditampilin sebagai rekomendasi
   resultsBox.innerHTML =
-    `<div style="font-size:12px;font-weight:800;color:var(--muted);padding:2px 4px 10px;">🔥 Rekomendasi buat kamu</div>` +
+    `<div style="font-size:12px;font-weight:800;color:var(--muted);padding:2px 4px 10px;">🔥 Rekomendasi buat kamu 😈</div>` +
     suggested.map(renderResultItem).join('');
 }
 
@@ -628,6 +639,7 @@ renderSections('all');
 
 /* ===== AUTO-SCROLL PELAN KE KANAN, SEREMPAK ===== */
 let autoScrollPaused = {};
+let pillsPaused = false;
 
 function startAutoScroll(){
   function tick(){
@@ -639,6 +651,14 @@ function startAutoScroll(){
         row.scrollLeft = 0;
       }
     });
+    const pillsRow = document.getElementById('pillsRow');
+    if(pillsRow && !pillsPaused){
+      pillsRow.scrollLeft += 0.3;
+      if(pillsRow.scrollLeft + pillsRow.clientWidth >= pillsRow.scrollWidth - 1){
+        pillsRow.scrollLeft = 0;
+      }
+    }
+
     requestAnimationFrame(tick);
   }
   requestAnimationFrame(tick);
@@ -671,13 +691,32 @@ renderSections = function(activeCat){
   attachRowInteraction();
 };
 
+function attachPillsInteraction(){
+  const pillsRow = document.getElementById('pillsRow');
+  if(!pillsRow) return;
+  let resumeTimer;
+  const pause = () => {
+    pillsPaused = true;
+    clearTimeout(resumeTimer);
+  };
+  const resume = () => {
+    clearTimeout(resumeTimer);
+    resumeTimer = setTimeout(() => { pillsPaused = false; }, 1800);
+  };
+  pillsRow.addEventListener('touchstart', pause, {passive:true});
+  pillsRow.addEventListener('touchend', resume);
+  pillsRow.addEventListener('mousedown', pause);
+  pillsRow.addEventListener('mouseup', resume);
+}
+
 attachRowInteraction();
+attachPillsInteraction();
 startAutoScroll();
 </script>
 
   <iframe id="bgMusic" width="0" height="0" src="https://www.youtube.com/embed/kuKyZWS9mag?enablejsapi=1&start=28" style="display:none;" allow="autoplay"></iframe>
 
-<button onclick="toggleMusic()" style="position:fixed; top:20px; right:20px; background:#FFF0A1; border: 3px solid #B2EBF7; border-radius:999px; padding:6px 10px; font-size:9px; font-weight:400; font-family:'Quicksand', sans-serif; color:#0B0B0B; box-shadow:0 4px 10px rgba(0,0,0,0.15); z-index:999; animation: pulseMusic 1.5s ease-in-out infinite; display:flex; flex-direction:column; align-items:center; gap:1px;">
+<button onclick="toggleMusic()" style="position:fixed; top:14px; right:14px; background:#FFF0A1; border: 3px solid #B2EBF7; border-radius:999px; padding:6px 10px; font-size:9px; font-weight:400; font-family:'Quicksand', sans-serif; color:#0B0B0B; box-shadow:0 4px 10px rgba(0,0,0,0.15); z-index:999; animation: pulseMusic 1.5s ease-in-out infinite; display:flex; flex-direction:column; align-items:center; gap:1px;">
   <span style="font-size:14px; display:inline-block; animation: ringPhone 0.8s ease-in-out infinite;">🎵</span>
   Klik lagu
 </button>
