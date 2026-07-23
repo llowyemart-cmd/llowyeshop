@@ -239,10 +239,10 @@
   }
   .product-card p.desc{font-size:12.5px; color:var(--muted); margin-bottom:10px; line-height:1.4;}
   .price-row{
-    display:flex; justify-content:space-between; align-items:center;
-    margin-bottom:10px;
-  }
-  .price-row .price{font-size:17px; font-weight:800; color:var(--pink);}
+  display:block;
+  margin-bottom:10px;
+}
+  .price-row .price{font-size:11px; font-weight:700; color:var(--pink); line-height:1.6; display:block; text-align:left;}
   .price-row .from{font-size:10px; color:var(--muted); display:block;}
   .order-btn{
   display:block; text-align:center; background:#FFF0A1; color:#000000;
@@ -360,7 +360,7 @@ const products = [
   // ---- STREAMING ----
   {name:"NETFLIX", cat:"streaming", icon:"<img src='netflix.jpg'>", color:"#B2EBF7",
    badges:["Garansi 25hari","Sharing","Private"], desc:"Nonton semua film & series tanpa batas.",
-   price:"1P1U Rp 5.000/hari","1P1U Rp 10.000/3hari","1P1U Rp 15.000/minggu","1P1U Rp 25.000/bulan"},
+   price:`<b>1P1U</b><br>5k/hari · 10k/3hari · 15k/minggu · 25k/bulan<br><b>1P2U</b><br>3k/hari · 5k/3hari · 10k/minggu · 20k/bulan<br><b>Semiprivate</b><br>35k/bulan<br><b>Private</b><br>50k/minggu · 100k/bulan`},
   {name:"DISNEY+", cat:"streaming", icon:"<img src='disney.jpg'>", color:"#B2EBF7",
    badges:["Garansi 25 hari","Sharing","Private"], desc:"Marvel, Star Wars, sampai bola lokal & internasional.",
    price:"Rp 20.000"},
