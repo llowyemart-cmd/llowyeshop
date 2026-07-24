@@ -242,7 +242,14 @@
   display:block;
   margin-bottom:10px;
 }
-  .price-row .price{font-size:11px; font-weight:700; color:var(--pink); line-height:1.6; display:block; text-align:left;}
+  .price-row .price{display:block; text-align:left;}
+  .price-group{margin-bottom:6px;}
+  .price-group:last-child{margin-bottom:0;}
+  .plabel{
+  display:inline-block; font-size:10px; font-weight:800; color:var(--ink);
+  background:#F3F1FF; padding:1px 8px; border-radius:6px; margin-bottom:3px;
+}
+.pval{display:block; font-size:11.5px; font-weight:700; color:var(--pink); margin-top:2px;}
   .price-row .from{font-size:10px; color:var(--muted); display:block;}
   .order-btn{
   display:block; text-align:center; background:#FFF0A1; color:#000000;
@@ -360,7 +367,7 @@ const products = [
   // ---- STREAMING ----
   {name:"NETFLIX", cat:"streaming", icon:"<img src='netflix.jpg'>", color:"#B2EBF7",
    badges:["Garansi 25hari","Sharing","Private"], desc:"Nonton semua film & series tanpa batas.",
-   price:`<b>1P1U</b><br>5k/hari · 10k/3hari · 15k/minggu · 25k/bulan<br><b>1P2U</b><br>3k/hari · 5k/3hari · 10k/minggu · 20k/bulan<br><b>Semiprivate</b><br>35k/bulan<br><b>Private</b><br>50k/minggu · 100k/bulan`},
+   price:<div class="price-group"><span class="plabel">1P1U</span><span class="pval">5k/hari · 10k/3hari · 15k/minggu · 25k/bulan</span></div><div class="price-group"><span class="plabel">1P2U</span><span class="pval">3k/hari · 5k/3hari · 10k/minggu · 20k/bulan</span></div><div class="price-group"><span class="plabel">Semiprivate</span><span class="pval">35k/bulan</span></div><div class="price-group"><span class="plabel">Private</span><span class="pval">50k/minggu · 100k/bulan</span></div>},
   {name:"DISNEY+", cat:"streaming", icon:"<img src='disney.jpg'>", color:"#B2EBF7",
    badges:["Garansi 25 hari","Sharing","Private"], desc:"Marvel, Star Wars, sampai bola lokal & internasional.",
    price:`<b>1P1U</b><br>5k/hari · 10k/3hari · 15k/minggu · 25k/bulan<br><b>1P2U</b><br>3k/hari · 5k/3hari · 10k/minggu · 20k/bulan<br><b>Semiprivate</b><br>35k/bulan<br><b>Private</b><br>50k/minggu · 100k/bulan`},
