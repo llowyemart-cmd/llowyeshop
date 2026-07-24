@@ -82,6 +82,9 @@
   transform: scale(0.92) translateY(2px);
   box-shadow: 0 1px 3px rgba(0,0,0,0.25);
 }
+  #musicBtn.playing{
+  animation:none;
+}
   @keyframes ringPhone{
   0%, 100% { transform: rotate(0deg); }
   20% { transform: rotate(-15deg); }
@@ -771,12 +774,15 @@ function playClickSound(){
 
 function toggleMusic(){
   playClickSound();
+  const btn = document.getElementById('musicBtn');
   if(!isPlaying){
     player.playVideo();
     isPlaying = true;
+    btn.classList.add('playing');
   } else {
     player.pauseVideo();
     isPlaying = false;
+    btn.classList.remove('playing');
   }
 }
 </script>
