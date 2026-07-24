@@ -740,7 +740,7 @@ startAutoScroll();
   <iframe id="bgMusic" width="0" height="0" src="https://www.youtube.com/embed/kuKyZWS9mag?enablejsapi=1&start=28" style="display:none;" allow="autoplay"></iframe>
 
 <button  id="musicBtn" onclick="toggleMusic()" style="position:fixed; top:14px; right:14px; background:#FFF0A1; border: 3px solid #B2EBF7; border-radius:999px; padding:6px 10px; font-size:9px; font-weight:400; font-family:'Quicksand', sans-serif; color:#0B0B0B; box-shadow:0 4px 10px rgba(0,0,0,0.15); z-index:999; animation: pulseMusic 1.5s ease-in-out infinite; display:flex; flex-direction:column; align-items:center; gap:1px;">
-  <span style="font-size:14px; display:inline-block; animation: ringPhone 0.8s ease-in-out infinite;">🎵</span>
+  <span id="musicIcon style="font-size:14px; display:inline-block; animation: ringPhone 0.8s ease-in-out infinite;">🎵</span>
   Klik lagu
 </button>
 
@@ -772,14 +772,17 @@ function playClickSound(){
 function toggleMusic(){
   playClickSound();
   const btn = document.getElementById('musicBtn');
+  const icon = document.getElementById('musicIcon');
   if(!isPlaying){
     player.playVideo();
     isPlaying = true;
     btn.style.animation = 'none';
+    icon.style.animation = 'none';
   } else {
     player.pauseVideo();
     isPlaying = false;
     btn.style.animation = 'pulseMusic 1.5s ease-in-out infinite';
+    icon.style.animation = 'ringPhone 0.8s ease-in-out infinite';
   }
 }
 </script>
