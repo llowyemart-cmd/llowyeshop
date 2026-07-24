@@ -82,9 +82,6 @@
   transform: scale(0.92) translateY(2px);
   box-shadow: 0 1px 3px rgba(0,0,0,0.25);
 }
-  #musicBtn.playing{
-  animation:none;
-}
   @keyframes ringPhone{
   0%, 100% { transform: rotate(0deg); }
   20% { transform: rotate(-15deg); }
@@ -778,11 +775,11 @@ function toggleMusic(){
   if(!isPlaying){
     player.playVideo();
     isPlaying = true;
-    btn.classList.add('playing');
+    btn.style.animation = 'none';
   } else {
     player.pauseVideo();
     isPlaying = false;
-    btn.classList.remove('playing');
+    btn.style.animation = 'pulseMusic 1.5s ease-in-out infinite';
   }
 }
 </script>
